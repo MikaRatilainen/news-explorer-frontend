@@ -2,7 +2,7 @@
 
 Yandex Practicum diplom by Mika Ratilainen
 
-## [Ссылка на проект](https://mikaratilainen.github.io/news-explorer-frontend/)
+## [Ссылка на проект](ratilainen.ru)
 
 ```
 npm run build
@@ -17,4 +17,4 @@ To run local server and wacth changes
 ```
 npm run deploy
 ```
-To deploy project to github pages
+To deploy project to Yandex Oblako
