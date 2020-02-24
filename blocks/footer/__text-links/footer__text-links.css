@@ -1,0 +1,10 @@
+.footer__text-links {
+    display: flex;
+}
+
+@media screen and (max-width: 320px) {
+    .footer__text-links {
+        flex-direction: column;
+        flex-grow: 1;
+    }
+}

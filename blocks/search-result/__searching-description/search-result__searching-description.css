@@ -1,0 +1,8 @@
+.search-result__searching-description {
+    margin: 0;
+    margin-top: 24px;
+
+    font-size: 18px;
+    line-height: 24px;
+    color: #b6bcbf;
+}

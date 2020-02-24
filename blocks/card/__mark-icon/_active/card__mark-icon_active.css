@@ -1,0 +1,5 @@
+body .card__control .card__mark-icon_active {
+    background-image: url('../../../../images/mark-blue.svg');
+
+    transition: background-image .5s;
+}

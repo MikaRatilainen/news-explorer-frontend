@@ -1,0 +1,14 @@
+.card__delete-icon {
+    width: 18px;
+    height: 19px;
+    background-image: url('../../../images/trash.svg');
+    background-repeat: no-repeat;
+
+    transition: background-image .5s;
+}
+
+.card__control:hover .card__delete-icon {
+    background-image: url('../../../images/trash-black.svg');
+
+    transition: background-image .5s;
+}

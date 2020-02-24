@@ -1,0 +1,19 @@
+.search__controls {
+    position: relative;
+
+    height: 64px;
+    margin-top: 64px;
+}
+
+@media screen and (max-width: 768px) {
+    .search__controls {
+        height: 56px;
+        margin-top: 48px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .search__controls {
+        margin-top: 122px;
+    }
+}

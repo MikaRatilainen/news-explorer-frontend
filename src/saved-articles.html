@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="News Explorer">
+<meta name="author" content="Mika Ratilainen">
+<title>News Explorer Сохраненные статьи</title>
+<link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.savedArticles.css %>">
+<link rel="shortcut icon" href="../images/favicon.png" />
+</head>
+<body>
+<div class="root">
+
+  <!-- HEADER -->
+  <div class="header header_theme_light">
+    <a class="header__logo header__logo_theme_light" href="/">NewsExplorer</a>
+    
+    <div class="header__controls">
+      <div class="header__auth">
+        <div class="icon-button icon-button_theme_dark">
+          <span class="icon-button__text">Мика</span>
+          <img class="icon-button__icon" src="../images/logout-black.svg" alt="logout">
+        </div>
+      </div>
+
+      <nav class="header__navigation">
+        <div class="header__navigation-item">
+          <a class="header__link header__link_theme_light header__link_black_white" href="/">Главная</a>
+        </div>
+
+        <div class="header__navigation-item header__navigation-item_current-page_black">
+          <a class="header__link header__link_theme_light" href="/saved-articles.html">Сохранённые статьи</a>
+        </div>
+      </nav>
+    </div>
+
+    <button class="header__menu header__menu_theme_light"></button>
+  </div>
+
+  <!-- SAVED INFO -->
+  <section class="saved-info">
+    <h1 class="saved-info__title">Сохранённые статьи</h1>
+
+    <h3 class="page__subtitle saved-info__count">
+      Мика, у вас 5 сохранённых статей
+    </h3>
+
+    <p class="saved-info__keywords">
+      <span>По ключевым словам: </span>
+      <span class="saved-info__keyword">Природа, Тайга и 2 другим</span>
+    </p>
+  </section>
+
+  <!-- SAVED ARTICLES -->
+  <div class="saved-articles">
+    <div class="card-list">
+      <article class="card">
+        <img class="card__image" src="../images/default-picture.jpg" alt="Article image">
+      
+        <div class="card__info">
+          <span class="card__date">2 августа, 2019</span>
+
+          <h4 class="card__title">
+            Лесные огоньки: история одной фотографии
+          </h4>
+
+          <p class="card__text">
+            Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
+          </p>
+
+          <span class="card__source">Афиша</span>
+        </div>
+
+        <span class="card__search-value  card__bar">Природа</span>
+
+        <button class="card__control card__bar">
+          <span class="card__delete-icon"></span>
+
+          <span class="card__delete-message card__bar">
+            Убрать из сохранённых
+          </span>
+        </button>
+      </article>
+      <article class="card">
+        <img class="card__image" src="../images/default-picture.jpg" alt="Article image">
+      
+        <div class="card__info">
+          <span class="card__date">2 августа, 2019</span>
+
+          <h4 class="card__title">
+            Лесные огоньки: история одной фотографии
+          </h4>
+
+          <p class="card__text">
+            Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
+          </p>
+
+          <span class="card__source">Афиша</span>
+        </div>
+
+        <span class="card__search-value  card__bar">Природа</span>
+
+        <button class="card__control card__bar">
+          <span class="card__delete-icon"></span>
+
+          <span class="card__delete-message card__bar">
+            Убрать из сохранённых
+          </span>
+        </button>
+      </article>
+      <article class="card">
+        <img class="card__image" src="../images/default-picture.jpg" alt="Article image">
+      
+        <div class="card__info">
+          <span class="card__date">2 августа, 2019</span>
+
+          <h4 class="card__title">
+            Лесные огоньки: история одной фотографии
+          </h4>
+
+          <p class="card__text">
+            Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
+          </p>
+
+          <span class="card__source">Афиша</span>
+        </div>
+
+        <span class="card__search-value  card__bar">Природа</span>
+
+        <button class="card__control card__bar">
+          <span class="card__delete-icon"></span>
+
+          <span class="card__delete-message card__bar">
+            Убрать из сохранённых
+          </span>
+        </button>
+      </article>
+      <article class="card">
+        <img class="card__image" src="../images/default-picture.jpg" alt="Article image">
+      
+        <div class="card__info">
+          <span class="card__date">2 августа, 2019</span>
+
+          <h4 class="card__title">
+            Лесные огоньки: история одной фотографии
+          </h4>
+
+          <p class="card__text">
+            Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
+          </p>
+
+          <span class="card__source">Афиша</span>
+        </div>
+
+        <span class="card__search-value  card__bar">Природа</span>
+
+        <button class="card__control card__bar">
+          <span class="card__delete-icon"></span>
+
+          <span class="card__delete-message card__bar">
+            Убрать из сохранённых
+          </span>
+        </button>
+      </article>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer__copyright">
+      © 2020 Supersite, Powered by News API
+    </span>
+    
+    <div class="footer__links">
+      <a class="footer__icon-link" href="https://www.facebook.com/mika.ratilainen.bruni">
+        <img src="../images/fb-icon.svg" alt="Facebook icon">
+      </a>
+      
+      <a class="footer__icon-link" href="https://github.com/MikaRatilainen">
+        <img src="../images/git-icon.svg" alt="Github icon">
+      </a>
+
+      <div class="footer__text-links">
+        <a class="footer__text-link" href="/">Главная</a>
+        
+        <a class="footer__text-link" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="<%= htmlWebpackPlugin.files.chunks.savedArticles.entry %>"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.search-result__empty-res-text {
+    width: 356px;
+    margin-top: 16px;
+
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    text-align: center;
+    color: #b6bcbf;
+}

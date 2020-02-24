@@ -1,0 +1,11 @@
+.header__navigation {
+    display: flex;
+    margin-right: 32px;
+}
+
+@media screen and (max-width: 320px) {
+  .header__navigation {
+    flex-direction: column;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,7 @@
+.root .header__menu_theme_light {
+    background-image: url('../../../../images/burger-black.svg');
+}
+
+.root .header_opened .header__menu {
+    background-image: url('../../../../images/cross-small-black.svg');
+}

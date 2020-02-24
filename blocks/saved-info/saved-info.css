@@ -1,0 +1,21 @@
+@import url(./__title/saved-info__title.css);
+@import url(./__count/saved-info__count.css);
+@import url(./__keyword/saved-info__keyword.css);
+@import url(./__keywords/saved-info__keywords.css);
+
+
+.saved-info {
+    padding: 120px 104px 56px;
+}
+
+@media screen and (max-width: 768px) {
+    .saved-info {
+        padding: 90px 40px 32px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .saved-info {
+        padding: 64px 16px 32px;
+    }
+}

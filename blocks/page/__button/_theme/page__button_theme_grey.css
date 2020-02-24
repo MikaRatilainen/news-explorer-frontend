@@ -1,0 +1,22 @@
+body .page__button_theme_grey {
+    border-radius: 80px;
+
+    color: #1a1b22;
+
+    background-color: #fff;
+}
+
+body .page__button_theme_grey:hover {
+    background-color: #fff;
+    opacity: 0.9;
+}
+
+body .page__button_theme_grey:active {
+    background-color: #fff;
+}
+
+@media screen and (max-width: 320px) {
+    body .page__button_theme_grey {
+        box-shadow: unset;
+    }
+}

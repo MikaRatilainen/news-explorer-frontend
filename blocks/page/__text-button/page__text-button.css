@@ -1,0 +1,10 @@
+.page__text-button {
+    padding: 0;
+    border: 0;
+
+    font-weight: 300;
+    color: #2f71e5;
+
+    background-color: transparent;
+    cursor: pointer;
+}

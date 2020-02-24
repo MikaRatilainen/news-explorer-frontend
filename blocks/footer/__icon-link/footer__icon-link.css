@@ -1,0 +1,7 @@
+.footer__icon-link {
+    margin-right: 28px;
+}
+
+.footer__icon-link:first-child {
+    margin-right: 0;
+}

@@ -1,0 +1,19 @@
+@import url(./_current-page/header__navigation-item_current-page_white.css);
+@import url(./_current-page/header__navigation-item_current-page_black.css);
+
+.header__navigation-item {
+    display: flex;
+    align-items: center;
+    margin-right: 34px;
+}
+
+.header__navigation-item:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .header__navigation-item {
+    margin-right: 0;
+    margin-top: 22px;
+  }
+}
