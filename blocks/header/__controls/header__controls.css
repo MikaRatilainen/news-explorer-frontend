@@ -2,8 +2,6 @@
   display: flex;
   flex-direction: row-reverse;
   align-self: stretch;
-  
-  background-color: inherit;
 }
 
 @media screen and (max-width: 320px) {
@@ -22,5 +20,7 @@
     flex-direction: column-reverse;
     align-self: unset;
     box-sizing: border-box;
+  
+    background-color: inherit;
   }
 }
