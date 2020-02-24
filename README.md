@@ -2,7 +2,7 @@
 
 Yandex Practicum diplom by Mika Ratilainen
 
-## [Ссылка на проект](ratilainen.ru)
+## [Ссылка на проект](https://ratilainen.ru)
 
 ```
 npm run build
