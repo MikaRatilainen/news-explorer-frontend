@@ -8,7 +8,7 @@
   <meta name="author" content="Mika Ratilainen">
   <title>News Explorer</title>
   <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
-  <link rel="shortcut icon" href="../images/favicon.png" />
+  <link rel="shortcut icon" href=<%=require("../images/favicon.png")%> />
 </head>
 <body>
   <div class="root">
@@ -141,8 +141,8 @@
     <!-- ABOUT -->
     <article class="about">
       <picture class="about__image-container">
-        <source srcset="../images/my-photo-default.jpg" media="(max-width: 768px)">
-        <source srcset="../images/my-photo-default.jpg">
+        <source srcset=<%=require("../images/my-photo-default.jpg")%> media="(max-width: 768px)">
+        <source srcset=<%=require("../images/my-photo-default.jpg")%>>
         <img class="about__image" src=<%=require("../images/my-photo-default.jpg")%> alt="Фотография разработчика">
       </picture>
 
