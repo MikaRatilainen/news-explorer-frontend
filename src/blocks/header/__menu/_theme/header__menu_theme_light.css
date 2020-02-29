@@ -2,6 +2,6 @@
     background-image: url('../../../../images/burger-black.svg');
 }
 
-.root .header_opened .header__menu {
+.root .header_opened .header__menu_theme_light {
     background-image: url('../../../../images/cross-small-black.svg');
 }
