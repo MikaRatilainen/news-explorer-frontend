@@ -17,22 +17,31 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.js$/, // регулярное выражение, которое ищет все js файлы
-            use: { loader: "babel-loader" }, // весь JS обрабатывается пакетом babel-loader
-            exclude: /node_modules/ // исключает папку node_modules
+            test: /\.js$/,
+            use: { loader: "babel-loader" },
+            exclude: /node_modules/
         },
         {
             test: /\.css$/i,
             use: [
-                (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
-                'css-loader', 
+                {
+                    loader: (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
+                    // options: {
+                    //     publicPath: (resourcePath, context) => {
+                    //         return path.relative(path.dirname(resourcePath), context) + '../';
+                    //     },
+                    //     hmr: isDev
+                    // },
+                    options: isDev ? {} : { publicPath: '../' }
+                },
+                'css-loader',
                 'postcss-loader'
             ]
         },
         {
             test: /\.(png|jpg|gif|ico|svg)$/,
             use: [
-                'file-loader?name=./images/[name].[ext]', // указали папку, куда складывать изображения
+                'file-loader?name=./images/[name].[ext]',
                 {
                     loader: 'image-webpack-loader'
                 },
@@ -45,7 +54,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name]/style.[contenthash].css'
+            filename: isDev ? 'style.[contenthash].css' : '[name]/style.[contenthash].css',
         }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
