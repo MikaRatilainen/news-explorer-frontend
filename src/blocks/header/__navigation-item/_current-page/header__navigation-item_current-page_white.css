@@ -1,0 +1,10 @@
+.header__navigation-item_current-page_white {
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .header__navigation-item_current-page_white {
+      border: 0;
+  }
+}

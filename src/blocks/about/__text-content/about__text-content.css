@@ -1,0 +1,21 @@
+.about__text-content {
+    max-width: 600px;
+    margin-top: 51px;
+    margin-left: 56px;
+}
+
+@media screen and (max-width: 1440px) {
+    .about__text-content {
+        max-width: unset;
+        margin-top: -20px;
+        margin-left: 32px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about__text-content {
+        max-width: unset;
+        margin-top: 24px;
+        margin-left: 0;
+    }
+}

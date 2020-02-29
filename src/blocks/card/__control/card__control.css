@@ -1,0 +1,18 @@
+.card__control {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    justify-content: center;
+    width: 40px;
+    border: 0;
+
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1440px) {
+    .card__control {
+        top: 8px;
+        right: 8px;
+    }
+}
