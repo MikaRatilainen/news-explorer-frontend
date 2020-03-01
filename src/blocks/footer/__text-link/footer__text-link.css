@@ -1,0 +1,21 @@
+.footer__text-link {
+    margin-right: 48px;
+
+    font-size: 18px;
+    line-height: 24px;
+    text-decoration: none;
+    color: #1A1B22;
+}
+
+@media screen and (max-width: 1440px) {
+    .footer__text-link {
+        margin-right: 26px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer__text-link {
+        margin-right: 0;
+        margin-bottom: 38px;
+    }
+}

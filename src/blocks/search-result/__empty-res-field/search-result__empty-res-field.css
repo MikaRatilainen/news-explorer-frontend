@@ -1,0 +1,5 @@
+.search-result__empty-res-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

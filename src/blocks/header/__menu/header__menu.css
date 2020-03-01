@@ -1,0 +1,23 @@
+@import url(./_theme/header__menu_theme_light.css);
+
+.header__menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu {
+    display: block;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+
+    background-color: transparent;
+    background-image: url('../../../images/burger.svg');
+    background-repeat: no-repeat;
+  }
+
+  .header_opened .header__menu {
+    background-image: url('../../../images/cross-small.svg');
+  }
+}

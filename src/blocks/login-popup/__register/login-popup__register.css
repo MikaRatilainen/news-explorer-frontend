@@ -1,0 +1,9 @@
+.login-popup__register {
+    display: block;
+    margin-top: 16px;
+
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}

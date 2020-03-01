@@ -1,0 +1,16 @@
+@import url(./_active/card__mark-icon_active.css);
+
+.card__mark-icon {
+    width: 14px;
+    height: 19px;
+    background-image: url('../../../images/mark.svg');
+    background-repeat: no-repeat;
+
+    transition: background-image .5s;
+}
+
+.card__control:hover .card__mark-icon {
+    background-image: url('../../../images/mark-black.svg');
+
+    transition: background-image .5s;
+}

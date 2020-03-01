@@ -1,0 +1,4 @@
+.search-result__controls {
+    display: flex;
+    justify-content: center;
+}

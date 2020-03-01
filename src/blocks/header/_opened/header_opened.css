@@ -1,0 +1,5 @@
+@media screen and (max-width: 768px) {
+  body .header_opened {
+    background-color: #1a1b22;
+  }
+}

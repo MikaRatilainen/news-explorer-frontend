@@ -1,0 +1,8 @@
+.search-result__empty-res-title {
+    margin-top: 40px;
+
+    font-family: 'Roboto Slab', 'Times New Roman', serif;
+    font-size: 26px;
+    line-height: 30px;
+    color: #1a1b22;
+}

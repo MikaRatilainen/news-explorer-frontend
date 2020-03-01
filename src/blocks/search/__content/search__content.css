@@ -1,0 +1,21 @@
+.search__content {
+    width: 608px;
+    margin-top: 160px;
+
+    color: #fff;
+}
+
+@media screen and (max-width: 1440px) {
+    .search__content {
+        width: 448px;
+        margin-top: 104px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search__content {
+        width: 100%;
+        padding: 0 16px;
+        margin-top: 86px;
+    }
+}

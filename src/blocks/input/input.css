@@ -1,0 +1,9 @@
+@import url(./__label/input__label.css);
+@import url(./__text-field/input__text-field.css);
+@import url(./__error/input__error.css);
+
+.input {
+    position: relative;
+
+    padding-bottom: 20px;
+}
