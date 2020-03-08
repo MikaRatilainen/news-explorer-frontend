@@ -11,7 +11,10 @@ export class Form extends BaseComponent {
         this._inputElements = Array.from(inputs);
         this._handleSubmit = handleSubmit;
 
-        super._setHandlers([{ f: this._validateForm, name: '_validateForm' }, { f:  this._submitForm, name: '_submitForm' }]);
+        super._setHandlers([
+            { handlerFunction: this._validateForm, name: '_validateForm' },
+            { handlerFunction: this._submitForm, name: '_submitForm' },
+        ]);
         this._setListeners();
     }
 
@@ -35,7 +38,7 @@ export class Form extends BaseComponent {
 
     _validateForm() {
         const isValid = this._inputElements.every(inputElem => inputElem.validity.valid);
-    
+
         this._submitButton.disabled = !isValid;
     }
 

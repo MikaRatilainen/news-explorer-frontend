@@ -45,6 +45,9 @@ const header = new Header(headerParams);
         mainApi.getUserInfo(token)
             .then(res => {
                 header.render({ userName: res.data.name, isLoggedIn: true});
+            })
+            .catch(err => {
+                console.log(err);
             });
     }
 }
@@ -65,13 +68,13 @@ function handleClickAuth() {
 
 // SEARCH LOGIC
 const searchFormElement = document.querySelector('.search__controls');
-const searchForm = new Form({ formElement: searchFormElement, handleSubmit: handleSearch });
+new Form({ formElement: searchFormElement, handleSubmit: handleSearch });
 const cardHandlers = { handleSaveCard, handleDeleteCard };
 let cards = [];
- 
 
-function handleSearch(formValues, form) {
-    const { searchValue } = formValues
+
+function handleSearch(formValues) {
+    const { searchValue } = formValues;
 
     if (searchValue === '') {
         newsCardList.renderError(EMPTY_REQUEST);
@@ -89,14 +92,14 @@ function handleSearch(formValues, form) {
                     const cardStatus = token ? cardStatuses.inactive : cardStatuses.disabled;
                     const handlers = cardHandlers;
                     cards = mappedCardData.map(cardData =>  new NewsCard({ cardData, cardStatus, handlers }));
-                    const cardElemets = cards.map(card => card.element);
+                    const cardElements = cards.map(card => card.element);
                     newsCardList.hideLoader();
-                    newsCardList.renderResults(cardElemets);
+                    newsCardList.renderResults(cardElements);
                 } else {
                     return Promise.reject(SERVER_ERROR);
                 }
             })
-            .catch(err => {
+            .catch(() => {
                 newsCardList.hideLoader();
                 newsCardList.renderError(SERVER_ERROR);
             });
@@ -109,6 +112,9 @@ function handleSaveCard(card) {
     mainApi.createArticle(cardData, token)
         .then(res => {
             card.setCardActive(res.data._id);
+        })
+        .catch(err => {
+            console.log(err);
         });
 }
 
@@ -116,8 +122,11 @@ function handleDeleteCard(card) {
     const token = tokenWorker.get();
     const cardData = card.getCardData();
     mainApi.removeArticle(cardData._id, token)
-        .then(res => {
+        .then(() => {
             card.setCardInactive();
+        })
+        .catch(err => {
+            console.log(err);
         });
 }
 
@@ -128,7 +137,7 @@ function openLoginPopup() {
     const loginFormElement = loginPopupContent.querySelector('.login-form');
     const registerButton = loginPopupContent.querySelector('.page__text-button');
 
-    const loginForm = new Form({ formElement: loginFormElement, handleSubmit: handleLogin });
+    new Form({ formElement: loginFormElement, handleSubmit: handleLogin });
 
     popup.clearContent();
     popup.setContent(loginPopupContent);
@@ -156,18 +165,20 @@ function handleLogin(formValues, form) {
             mainApi.getUserInfo(data)
                 .then(res => {
                     header.render({ userName: res.data.name, isLoggedIn: true});
-                    cards.forEach(card => {
-                        card.changeCardStatus(cardStatuses.inactive)
-                    });
-                    const cardElemets = cards.map(card => card.element);
-                    newsCardList.clearList();
-                    newsCardList.renderResults(cardElemets);
+                    if (cards.length > 0) {
+                        cards.forEach(card => {
+                            card.changeCardStatus(cardStatuses.inactive)
+                        });
+                        const cardElements = cards.map(card => card.element);
+                        newsCardList.clearList();
+                        newsCardList.renderResults(cardElements);
+                    }
                 })
                 .catch(err => {
                     form.setServerError(err);
                 });
         })
-        .catch(() => {
+        .catch(err => {
             form.setServerError(err);
         });
 }
@@ -179,7 +190,7 @@ function openRegisterPopup() {
     const registerFormElement = registerPopupContent.querySelector('.register-form');
     const loginButton = registerPopupContent.querySelector('.page__text-button');
 
-    const registerForm = new Form({ formElement: registerFormElement, handleSubmit: handleRegister });
+    new Form({ formElement: registerFormElement, handleSubmit: handleRegister });
 
     popup.clearContent();
     popup.setContent(registerPopupContent);

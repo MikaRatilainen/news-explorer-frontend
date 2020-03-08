@@ -24,7 +24,7 @@ export class NewsCard extends BaseComponent {
         this._setMarkMessage();
         this._setKeyWord();
 
-        this._setHandlers([{ f: this._handleClickMarkButton, name: '_handleClickMarkButton' }]);
+        this._setHandlers([{ handlerFunction: this._handleClickMarkButton, name: '_handleClickMarkButton' }]);
         this._setListeners();
 
         return this;

@@ -3,7 +3,7 @@ export class MainApi {
         this._baseUrl = baseUrl;
         this._token = token;
     }
-  
+
     signup(userInfo) {
         const requestConfig = {
             method: 'POST',
@@ -14,7 +14,7 @@ export class MainApi {
 
         return this._commonRequest(requestConfig);
     }
-  
+
     signin(userInfo) {
         const requestConfig = {
             method: 'POST',
@@ -25,7 +25,7 @@ export class MainApi {
 
         return this._commonRequest(requestConfig);
     }
-  
+
     getUserInfo(token) {
         this._token = token;
         const requestConfig = {
@@ -34,7 +34,7 @@ export class MainApi {
 
         return this._commonRequest(requestConfig);
     }
-  
+
     getArticles(token) {
         this._token = token;
         const requestConfig = {
@@ -65,7 +65,7 @@ export class MainApi {
 
         return this._commonRequest(requestConfig);
     }
-    
+
     _commonRequest({ path, method = 'GET', headers = {}, body }) {
         return fetch(`${this._baseUrl}${path}`, {
             method,
@@ -77,21 +77,14 @@ export class MainApi {
         })
             .then(res =>  {
                 return this._checkRequest(res);
-            })
-            .catch(err => {
-                this._handleRequestError(err);
             });
     }
-    
+
     _checkRequest(res) {
         if (res.ok) {
             return res.json();
         }
 
         return Promise.reject(`Ошибка: ${res.status}`);
-    }
-    
-    _handleRequestError(err) {
-        return Promise.reject(`Ошибка: ${err}`);
     }
 }

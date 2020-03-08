@@ -18,7 +18,7 @@ export class NewsCardList extends BaseComponent {
         this._showingCardsCount = 0;
 
         this._cards.forEach(card => this._addCard(card));
-        this._setHandlers([{ f: this._showMore, name: '_showMore' }]);
+        this._setHandlers([{ handlerFunction: this._showMore, name: '_showMore' }]);
         this._setListeners();
     }
 
@@ -27,7 +27,7 @@ export class NewsCardList extends BaseComponent {
         this.hideError();
 
         if (cards.length > 0) {
-            this._showFoudField();
+            this._showFoundField();
             this._showMore();
             this._showShowMoreButton();
         } else {
@@ -75,7 +75,7 @@ export class NewsCardList extends BaseComponent {
         this._hideFoundField();
     }
 
-    _showFoudField() {
+    _showFoundField() {
         if (this._foundFieldElement) {
             this._foundFieldElement.classList.remove('page__element_hidden');
         }
@@ -88,7 +88,7 @@ export class NewsCardList extends BaseComponent {
     }
 
     _showMore() {
-        const currentCountWithStep = this._showingCardsCount + RENDER_CARDS_STEP
+        const currentCountWithStep = this._showingCardsCount + RENDER_CARDS_STEP;
         const nextCardsCount = this._showAll ? this._cards.length : Math.min(currentCountWithStep, this._cards.length);
         const printingCards = this._cards.slice(this._showingCardsCount, nextCardsCount);
         printingCards.forEach(card => this._addCard(card));

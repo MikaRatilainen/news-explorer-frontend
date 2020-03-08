@@ -38,6 +38,9 @@ const header = new Header(headerParams);
             .then(res => {
                 header.render({ userName: res.data.name, isLoggedIn: true});
                 articlesCounter.setUserName(res.data.name);
+            })
+            .catch(() => {
+                window.location.href = '/';
             });
     } else {
         window.location.href = '/';
@@ -65,8 +68,8 @@ mainApi.getArticles(token)
         const cardStatus = cardStatuses.savedMode;
         cardsData = res.data;
         cards = cardsData.map(cardData =>  new NewsCard({ cardData, cardStatus, handlers }));
-        const cardElemets = cards.map(card => card.element);
-        newsCardList.renderResults(cardElemets);
+        const cardElements = cards.map(card => card.element);
+        newsCardList.renderResults(cardElements);
         articlesCounter.setCardsData(cardsData);
     })
     .catch(err => {
@@ -77,10 +80,13 @@ function handleDeleteCard(card) {
     const token = tokenWorker.get();
     const cardData = card.getCardData();
     mainApi.removeArticle(cardData._id, token)
-        .then(res => {
+        .then(() => {
             const deletedId = card._cardData._id;
             card.element.remove();
             cardsData = cardsData.filter(card => card._id !== deletedId);
             articlesCounter.setCardsData(cardsData);
+        })
+        .catch(err => {
+            console.log(err);
         });
 }

@@ -16,7 +16,7 @@
     <!-- HEADER -->
     <div class="header header_opened">
       <a class="header__logo" href="/">NewsExplorer</a>
-      
+
       <div class="header__controls">
         <div class="header__auth">
           <div class="icon-button">
@@ -50,7 +50,7 @@
         </p>
 
         <form class="search__controls">
-          <input class="search__input" placeholder="Введите тему новости" name="searchValue">
+          <input class="search__input" placeholder="Введите тему новости" name="searchValue" required>
 
           <button class="search__submit page__button" type="submit">Искать</button>
         </form>
@@ -71,13 +71,13 @@
           <button class="search-result__show-more-btn page__button page__button_theme_grey">Показать еще</button>
         </div>
       </div>
-      
+
       <div class="search-result__searching-field page__element_hidden">
         <i class="circle-preloader"></i>
 
         <p class="search-result__searching-description">Идет поиск новостей...</p>
       </div>
-      
+
       <div class="search-result__empty-res-field  page__element_hidden">
         <img src=<%=require("./images/not-found-icon.svg")%> alt="Search with no result">
 
@@ -114,19 +114,19 @@
       <span class="footer__copyright">
         © 2020 Supersite, Powered by News API
       </span>
-      
+
       <div class="footer__links">
         <a class="footer__icon-link" href="https://www.facebook.com/mika.ratilainen.bruni">
           <img src=<%=require("./images/fb-icon.svg")%> alt="Facebook icon">
         </a>
-        
+
         <a class="footer__icon-link" href="https://github.com/MikaRatilainen">
           <img src=<%=require("./images/git-icon.svg")%> alt="Github icon">
         </a>
 
         <div class="footer__text-links">
           <a class="footer__text-link" href="/">Главная</a>
-          
+
           <a class="footer__text-link" href="https://praktikum.yandex.ru/">Яндекс.Практикум</a>
         </div>
       </div>
@@ -135,7 +135,7 @@
     <!-- LOGIN POPUP -->
     <template id="login-popup">
       <h3 class="popup__title">Вход</h3>
-      
+
       <form class="form login-form">
         <div class="input form__element">
           <span class="input__label">Email</span>
@@ -152,7 +152,7 @@
             Неправильный формат email
           </span>
         </div>
-        
+
         <div class="input form__element">
           <span class="input__label">Пароль</span>
 
@@ -185,7 +185,7 @@
     <!-- REGISTER POPUP -->
     <template id="register-popup">
       <h3 class="popup__title">Регистрация</h3>
-      
+
       <form class="form register-form">
         <div class="input form__element">
           <span class="input__label">Email</span>
@@ -202,7 +202,7 @@
             Неправильный формат email
           </span>
         </div>
-        
+
         <div class="input form__element">
           <span class="input__label">Пароль</span>
 
@@ -218,7 +218,7 @@
             Неправильный пароль
           </span>
         </div>
-        
+
         <div class="input form__element">
           <span class="input__label">Имя</span>
 

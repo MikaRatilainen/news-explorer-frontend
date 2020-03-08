@@ -19,8 +19,8 @@ export class ArticlesCounter {
 
     _render() {
         if (this._cardsData && this._userName) {
-            const acticlesCount = this._cardsData.length;
-            this._count.textContent = `${this._userName}, у вас ${acticlesCount} сохранённых статей`;
+            const articlesCount = this._cardsData.length;
+            this._count.textContent = `${this._userName}, у вас ${articlesCount} сохранённых статей`;
             this._keywords.textContent = this._getKewordsInfo(this._cardsData);
         }
     }
@@ -47,7 +47,7 @@ export class ArticlesCounter {
     _calculateKeywords(cardsData) {
         return cardsData.reduce((acc, card) => {
             const keywordCount = acc[card.keyword] ? acc[card.keyword] + 1 : 1;
-            
+
             return { ...acc, [card.keyword]: keywordCount };
         }, {});
     }

@@ -1,7 +1,8 @@
 export class BaseComponent {
     _setHandlers(handlers) {
         handlers.forEach(handler => {
-            this[handler.name] = handler.f.bind(this);
+            const { handlerFunction, name } = handler;
+            this[name] = handlerFunction.bind(this);
         });
     }
 }

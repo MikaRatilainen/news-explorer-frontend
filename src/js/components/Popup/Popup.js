@@ -10,7 +10,7 @@ export class Popup extends BaseComponent {
         this._layoutElement = this._popupElement.querySelector('.popup__layout');
         this._closeBtnElement = this._popupElement.querySelector('.popup__close');
 
-        this._setHandlers([{ f: this.close, name: 'close' }]);
+        this._setHandlers([{ handlerFunction: this.close, name: 'close' }]);
     }
 
     open() {
