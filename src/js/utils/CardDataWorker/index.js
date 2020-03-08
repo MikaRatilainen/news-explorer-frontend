@@ -1,0 +1,1 @@
+export { CardDataWorker } from './CardDataWorker';

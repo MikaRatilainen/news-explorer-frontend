@@ -1,14 +1,16 @@
-@import url(./_theme/header__logo_theme_light.css);
-
 .header__logo {
-    margin-right: 20px;
+  margin-right: 20px;
 
-    font-family: 'Roboto Slab', 'Times New Roman', serif;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    color: #fff;
-    text-decoration: none;
+  font-family: 'Roboto Slab', 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.header_theme_black .header__logo {
+  color: #1a1b22;
 }
 
 @media screen and (max-width: 768px) {

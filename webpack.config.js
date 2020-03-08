@@ -26,12 +26,6 @@ module.exports = {
             use: [
                 {
                     loader: (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
-                    // options: {
-                    //     publicPath: (resourcePath, context) => {
-                    //         return path.relative(path.dirname(resourcePath), context) + '../';
-                    //     },
-                    //     hmr: isDev
-                    // },
                     options: isDev ? {} : { publicPath: '../' }
                 },
                 'css-loader',

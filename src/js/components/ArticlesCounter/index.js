@@ -1,0 +1,1 @@
+export { ArticlesCounter } from './ArticlesCounter';

@@ -2,4 +2,10 @@
     position: absolute;
     left: 0;
     bottom: 0;
+
+	display: none;
+}
+
+.input__text-field:invalid:not(:placeholder-shown) + .input__error {
+	display: block;
 }

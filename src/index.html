@@ -21,16 +21,16 @@
         <div class="header__auth">
           <div class="icon-button">
             <span class="icon-button__text">Авторизоваться</span>
-            <img class="icon-button__icon page__element_hidden" src=<%=require("./images/logout.svg")%> alt="logout">
+            <img class="icon-button__icon header_logged-only" src=<%=require("./images/logout.svg")%> alt="logout">
           </div>
         </div>
 
         <ul class="header__navigation">
-          <li class="header__navigation-item header__navigation-item_current-page_white">
-            <a class="header__link header__link_active_white" href="/">Главная</a>
+          <li class="header__navigation-item header__navigation-item_current-page">
+            <a class="header__link" href="/">Главная</a>
           </li>
 
-          <li class="header__navigation-item">
+          <li class="header__navigation-item header_logged-only">
             <a class="header__link" href="/saved-articles.html">Сохранённые статьи</a>
           </li>
         </ul>
@@ -49,70 +49,21 @@
           Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
         </p>
 
-        <div class="search__controls">
-          <input class="search__input" placeholder="Введите тему новости">
+        <form class="search__controls">
+          <input class="search__input" placeholder="Введите тему новости" name="searchValue">
 
-          <button class="search__submit page__button">Искать</button>
-        </div>
+          <button class="search__submit page__button" type="submit">Искать</button>
+        </form>
       </div>
     </section>
 
     <!-- SEARCH RESULT -->
-    <section class="search-result">
-      <div class="search-result__found-field">
+    <section class="search-result page__element_hidden">
+      <div class="search-result__found-field page__element_hidden">
         <h2 class="page__subtitle">Результаты поиска</h2>
 
         <div class="search-result__cards">
           <div class="card-list">
-            <article class="card">
-              <img class="card__image" src=<%=require("./images/default-picture.jpg")%> alt="Article image">
-            
-              <div class="card__info">
-                <span class="card__date">2 августа, 2019</span>
-
-                <h4 class="card__title">
-                  Лесные огоньки: история одной фотографии
-                </h4>
-
-                <p class="card__text">
-                  Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
-                </p>
-
-                <span class="card__source">Афиша</span>
-              </div>
-
-              <button class="card__control card__bar">
-                <span class="card__mark-icon"></span>
-
-                <span class="card__login-message card__bar">
-                  Войдите, чтобы сохранять статьи
-                </span>
-              </button>
-            </article>
-
-            <article class="card">
-              <img class="card__image" src=<%=require("./images/default-picture.jpg")%> alt="Article image">
-            
-              <div class="card__info">
-                <span class="card__date">2 августа, 2019</span>
-
-                <h4 class="card__title">
-                  Лесные огоньки: история одной фотографии
-                </h4>
-
-                <p class="card__text">
-                  Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
-                </p>
-
-                <span class="card__source">Афиша</span>
-              </div>
-
-              <!-- <span class="card__search-value  card__bar">Природа</span> -->
-
-              <button class="card__control card__bar">
-                <span class="card__mark-icon card__mark-icon_active"></span>
-              </button>
-            </article>
           </div>
         </div>
 
@@ -127,7 +78,7 @@
         <p class="search-result__searching-description">Идет поиск новостей...</p>
       </div>
       
-      <div class="search-result__empty-res-field page__element_hidden">
+      <div class="search-result__empty-res-field  page__element_hidden">
         <img src=<%=require("./images/not-found-icon.svg")%> alt="Search with no result">
 
         <h3 class="search-result__empty-res-title">Ничего не найдено</h3>
@@ -182,146 +133,128 @@
     </div>
 
     <!-- LOGIN POPUP -->
-    <div class="popup login-popup page__element_hidden">
-      <div class="popup__content">
-        <h3 class="popup__title">Вход</h3>
+    <template id="login-popup">
+      <h3 class="popup__title">Вход</h3>
+      
+      <form class="form login-form">
+        <div class="input form__element">
+          <span class="input__label">Email</span>
+
+          <input
+            class="input__text-field"
+            name="email"
+            placeholder="Введите почту"
+            pattern="^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+            required
+          >
+
+          <span class="input__error page__error-message">
+            Неправильный формат email
+          </span>
+        </div>
         
-        <form class="form">
-          <div class="input form__element">
-            <span class="input__label">Email</span>
+        <div class="input form__element">
+          <span class="input__label">Пароль</span>
 
-            <input
-              class="input__text-field"
-              name="email"
-              placeholder="Введите почту"
-              pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-              required
-            >
+          <input
+            class="input__text-field"
+            name="password"
+            type="password"
+            placeholder="Введите пароль"
+            required
+          >
 
-            <span class="input__error page__error-message page__element_hidden">
-              Неправильный формат email
-            </span>
-          </div>
-          
-          <div class="input form__element">
-            <span class="input__label">Пароль</span>
+          <span class="input__error page__error-message">
+            Неправильный пароль
+          </span>
+        </div>
 
-            <input
-              class="input__text-field"
-              name="pass"
-              type="password"
-              placeholder="Введите пароль"
-              required
-            >
+        <button class="page__button form__submit" type="submit">
+          <span>Войти</span>
 
-            <span class="input__error page__error-message page__element_hidden">
-              Неправильный пароль
-            </span>
-          </div>
+          <span class="form__error page__error-message page__element_hidden">Неверные данные для входа</span>
+        </button>
+      </form>
 
-          <button class="page__button form__submit">
-            <span>Войти</span>
-
-            <span class="form__error page__error-message page__element_hidden">Неверные данные для входа</span>
-          </button>
-        </form>
-
-        <span class="login-popup__register">
-          <span>или </span>
-          <button class="page__text-button">Зарегистрироваться</button>
-        </span>
-
-        <button class="popup__close"></button>
-      </div>
-
-      <div class="popup__layout"></div>
-    </div>
+      <span class="login-popup__register">
+        <span>или </span>
+        <button class="page__text-button">Зарегистрироваться</button>
+      </span>
+    </template>
 
     <!-- REGISTER POPUP -->
-    <div class="popup register-popup page__element_hidden">
-      <div class="popup__content">
-        <h3 class="popup__title">Вход</h3>
+    <template id="register-popup">
+      <h3 class="popup__title">Регистрация</h3>
+      
+      <form class="form register-form">
+        <div class="input form__element">
+          <span class="input__label">Email</span>
+
+          <input
+            class="input__text-field"
+            name="email"
+            placeholder="Введите почту"
+            pattern="^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+            required
+          >
+
+          <span class="input__error page__error-message page__element_hidden">
+            Неправильный формат email
+          </span>
+        </div>
         
-        <form class="form">
-          <div class="input form__element">
-            <span class="input__label">Email</span>
+        <div class="input form__element">
+          <span class="input__label">Пароль</span>
 
-            <input
-              class="input__text-field"
-              name="email"
-              placeholder="Введите почту"
-              pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
-              required
-            >
+          <input
+            class="input__text-field"
+            name="password"
+            type="password"
+            placeholder="Введите пароль"
+            required
+          >
 
-            <span class="input__error page__error-message page__element_hidden">
-              Неправильный формат email
-            </span>
-          </div>
-          
-          <div class="input form__element">
-            <span class="input__label">Пароль</span>
+          <span class="input__error page__error-message page__element_hidden">
+            Неправильный пароль
+          </span>
+        </div>
+        
+        <div class="input form__element">
+          <span class="input__label">Имя</span>
 
-            <input
-              class="input__text-field"
-              name="pass"
-              type="password"
-              placeholder="Введите пароль"
-              required
-            >
+          <input
+            class="input__text-field"
+            name="name"
+            placeholder="Введите своё имя"
+            minlength="2"
+            maxlength="30"
+            required
+          >
 
-            <span class="input__error page__error-message page__element_hidden">
-              Неправильный пароль
-            </span>
-          </div>
-          
-          <div class="input form__element">
-            <span class="input__label">Имя</span>
+          <span class="input__error page__error-message page__element_hidden">
+            Неправильный формат имени
+          </span>
+        </div>
 
-            <input
-              class="input__text-field"
-              name="name"
-              placeholder="Введите своё имя"
-              minlength="2"
-              maxlength="30"
-              required
-            >
+        <button class="page__button form__submit" type="submit">
+          <span>Зарегистрироваться</span>
 
-            <span class="input__error page__error-message page__element_hidden">
-              Неправильный формат имени
-            </span>
-          </div>
+          <span class="form__error page__error-message page__element_hidden">Такой пользователь уже есть</span>
+        </button>
+      </form>
 
-          <button class="page__button form__submit">
-            <span>Зарегистрироваться</span>
-
-            <span class="form__error page__error-message page__element_hidden">Такой пользователь уже есть</span>
-          </button>
-        </form>
-
-        <span class="login-popup__register">
-          <span>или </span>
-          <button class="page__text-button">Войти</button>
-        </span>
-
-        <button class="popup__close"></button>
-      </div>
-
-      <div class="popup__layout"></div>
-    </div>
+      <span class="login-popup__register">
+        <span>или </span>
+        <button class="page__text-button">Войти</button>
+      </span>
+    </template>
 
     <!-- REGISTER SUCCESS POPUP -->
-    <div class="popup register-success-popup page__element_hidden">
-      <div class="popup__content">
-        <h3 class="register-success-popup__title popup__title">Пользователь успешно зарегистрирован!</h3>
+    <template id="register-success-popup">
+      <h3 class="register-success-popup__title popup__title">Пользователь успешно зарегистрирован!</h3>
 
-        <button class="register-success-popup__login page__text-button">Выполнить вход</button>
-
-        <button class="popup__close"></button>
-      </div>
-
-      <div class="popup__layout"></div>
-    </div>
+      <button class="register-success-popup__login page__text-button">Выполнить вход</button>
+    </template>
   </div>
   <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>

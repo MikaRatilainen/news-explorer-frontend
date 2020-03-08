@@ -1,0 +1,7 @@
+.header .header__link_active {
+    color: #fff;
+}
+
+.header_theme_black .header__link_active {
+    color: #1a1b22;
+}
