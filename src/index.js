@@ -68,7 +68,7 @@ function handleClickAuth() {
 
 // SEARCH LOGIC
 const searchFormElement = document.querySelector('.search__controls');
-new Form({ formElement: searchFormElement, handleSubmit: handleSearch });
+const searchForm = new Form({ formElement: searchFormElement, handleSubmit: handleSearch });
 const cardHandlers = { handleSaveCard, handleDeleteCard };
 let cards = [];
 
@@ -79,6 +79,7 @@ function handleSearch(formValues) {
     if (searchValue === '') {
         newsCardList.renderError(EMPTY_REQUEST);
     } else {
+        searchForm.disableSubmit();
         newsCardList.clearList();
         newsCardList.renderLoader();
         const today = dateWorker.formatDateForNewsApi(dateWorker.getTodayDate());
@@ -95,6 +96,7 @@ function handleSearch(formValues) {
                     const cardElements = cards.map(card => card.element);
                     newsCardList.hideLoader();
                     newsCardList.renderResults(cardElements);
+                    searchForm.enableSubmit();
                 } else {
                     return Promise.reject(SERVER_ERROR);
                 }
@@ -154,11 +156,13 @@ function handleClickRegisterButton(event) {
 }
 
 function handleLogin(formValues, form) {
+    form.disableSubmit();
     mainApi.signin(formValues)
         .then(res => {
             form.removeListeners();
             popup.clearContent();
             popup.close();
+            form.enableSubmit();
 
             const { data } = res;
             tokenWorker.set(data);
@@ -207,12 +211,14 @@ function handleClickLoginButton(event) {
 }
 
 function handleRegister(formValues, form) {
+    form.disableSubmit();
     mainApi.signup(formValues)
         .then(() => {
             form.removeListeners();
             popup.clearContent();
             popup.close();
             openRegisteredPopup();
+            form.enableSubmit();
         })
         .catch(() => {
             form.setServerError();

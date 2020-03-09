@@ -70,37 +70,35 @@ export class NewsCard extends BaseComponent {
     }
 
     _setDate() {
-        const { date } = this._cardData;
-        const dateElement = this.element.querySelector('.card__date');
-        dateElement.textContent = date;
+        this._setTextContent('.card__date', this._cardData.date);
     }
 
     _setTitle() {
-        const { title } = this._cardData;
-        const titleElement = this.element.querySelector('.card__title');
-        titleElement.textContent = title;
+        this._setTextContent('.card__title', this._cardData.title);
     }
 
     _setText() {
-        const { text } = this._cardData;
-        const textElement = this.element.querySelector('.card__text');
-        textElement.textContent = text;
+        this._setTextContent('.card__text', this._cardData.text);
     }
 
     _setSource() {
         const { source, link } = this._cardData;
-        const sourceElement = this.element.querySelector('.card__source');
-        sourceElement.textContent = source;
+        const sourceElement = this._setTextContent('.card__source', source);
         sourceElement.href = link;
     }
 
     _setKeyWord() {
         if (cardStatuses[this._cardStatus] === cardStatuses.savedMode) {
-            const { keyword } = this._cardData;
-            const keywordElement = this.element.querySelector('.card__search-value');
-            keywordElement.textContent = keyword;
+            const keywordElement = this._setTextContent('.card__search-value', this._cardData.keyword);
             keywordElement.classList.remove('page__element_hidden');
         }
+    }
+
+    _setTextContent(selector, text) {
+        const foundElement = this.element.querySelector(selector);
+        foundElement.textContent = text;
+
+        return foundElement;
     }
 
     _setMarkMessage() {

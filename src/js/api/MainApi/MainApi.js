@@ -5,55 +5,36 @@ export class MainApi {
     }
 
     signup(userInfo) {
-        const requestConfig = {
-            method: 'POST',
-            path: '/signup',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userInfo),
-        };
+        const requestConfig = { path: '/signup' };
 
-        return this._commonRequest(requestConfig);
+        return this._commonPostRequest(userInfo, requestConfig);
     }
 
     signin(userInfo) {
-        const requestConfig = {
-            method: 'POST',
-            path: '/signin',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userInfo),
-        };
+        const requestConfig = { path: '/signin' };
 
-        return this._commonRequest(requestConfig);
+        return this._commonPostRequest(userInfo, requestConfig);
     }
 
     getUserInfo(token) {
         this._token = token;
-        const requestConfig = {
-            path: '/users/me',
-        };
+        const requestConfig = { path: '/users/me' };
 
         return this._commonRequest(requestConfig);
     }
 
     getArticles(token) {
         this._token = token;
-        const requestConfig = {
-            path: '/articles',
-        };
+        const requestConfig = { path: '/articles' };
 
         return this._commonRequest(requestConfig);
     }
 
     createArticle(cardData, token) {
         this._token = token;
-        const requestConfig = {
-            method: 'POST',
-            path: '/articles',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cardData),
-        };
+        const requestConfig = { path: '/articles' };
 
-        return this._commonRequest(requestConfig);
+        return this._commonPostRequest(cardData, requestConfig);
     }
 
     removeArticle(id, token) {
@@ -64,6 +45,17 @@ export class MainApi {
         };
 
         return this._commonRequest(requestConfig);
+    }
+
+    _commonPostRequest(body, requestConfig) {
+        const postRequestConfig = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+            ...requestConfig,
+        };
+
+        return this._commonRequest(postRequestConfig);
     }
 
     _commonRequest({ path, method = 'GET', headers = {}, body }) {
