@@ -77,6 +77,7 @@ mainApi.getArticles(token)
     });
 
 function handleDeleteCard(card) {
+    card.setCardIsUpdating(true);
     const token = tokenWorker.get();
     const cardData = card.getCardData();
     mainApi.removeArticle(cardData._id, token)

@@ -109,11 +109,13 @@ function handleSearch(formValues) {
 }
 
 function handleSaveCard(card) {
+    card.setCardIsUpdating(true);
     const token = tokenWorker.get();
-    const cardData = card.getCardData();
+    const { _id, ...cardData} = card.getCardData();
     mainApi.createArticle(cardData, token)
         .then(res => {
             card.setCardActive(res.data._id);
+            card.setCardIsUpdating(false);
         })
         .catch(err => {
             console.log(err);
@@ -121,11 +123,13 @@ function handleSaveCard(card) {
 }
 
 function handleDeleteCard(card) {
+    card.setCardIsUpdating(true);
     const token = tokenWorker.get();
     const cardData = card.getCardData();
     mainApi.removeArticle(cardData._id, token)
         .then(() => {
             card.setCardInactive();
+            card.setCardIsUpdating(false);
         })
         .catch(err => {
             console.log(err);
