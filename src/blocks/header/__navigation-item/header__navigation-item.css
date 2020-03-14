@@ -1,5 +1,4 @@
-@import url(./_current-page/header__navigation-item_current-page_white.css);
-@import url(./_current-page/header__navigation-item_current-page_black.css);
+@import url(./_current-page/header__navigation-item_current-page.css);
 
 .header__navigation-item {
     display: flex;

@@ -1,0 +1,3 @@
+.header:not(.header_logged-in) .header_logged-only {
+    display: none;
+}

@@ -1,6 +1,5 @@
 @import url(./__icon/icon-button__icon.css);
 @import url(./__text/icon-button__text.css);
-@import url(./_theme/icon-button_theme_dark.css);
 
 .icon-button {
     display: flex;
@@ -15,6 +14,12 @@
 
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.header_theme_black .icon-button {
+    border: 1px solid #1a1b22;
+
+    color: #1a1b22;
 }
 
 @media screen and (max-width: 1440px) {

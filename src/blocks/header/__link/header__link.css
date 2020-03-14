@@ -1,6 +1,4 @@
-@import url(./_theme/header__link_theme_light.css);
-@import url(./_active/header__link_active_white.css);
-@import url(./_active/header__link_active_black.css);
+@import url(./_active/header__link_active.css);
 
 .header__link {
     font-weight: 500;
@@ -12,6 +10,23 @@
 
 .header__link:hover {
     color: #fff;
+}
+
+.header_theme_black .header__link {
+    color: #1a1b22;
+}
+
+.header_theme_black .header__link:hover {
+    color: #1a1b22;
+}
+
+
+.header__navigation-item_current-page .header__link {
+    color: #fff;
+}
+
+.header_theme_black .header__navigation-item_current-page .header__link {
+    color: #1a1b22;
 }
 
 @media screen and (max-width: 1440px) {

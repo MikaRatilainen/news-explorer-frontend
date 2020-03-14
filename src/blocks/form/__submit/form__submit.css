@@ -3,3 +3,15 @@
 
     margin-top: 26px;
 }
+
+.form:invalid .form__submit {
+    color: #b6bcbf;
+
+    background-color: #e6e8eb;
+}
+
+.form .form__submit:disabled {
+    color: #b6bcbf;
+
+    background-color: #e6e8eb;
+}
