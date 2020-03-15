@@ -1,5 +1,5 @@
 import { WEEK_IN_MILESECS } from '../../constants/numbers';
-import { DATE_LODALE, timeFormatOptions } from '../../constants/texts';
+import { DATE_LOCALE, timeFormatOptions } from '../../constants/texts';
 
 export class DateWorker {
     getTodayDate() {
@@ -19,7 +19,7 @@ export class DateWorker {
 
     formatDateCard(dateISO) {
         const date = new Date(dateISO);
-        const day = date.toLocaleString(DATE_LODALE, timeFormatOptions);
+        const day = date.toLocaleString(DATE_LOCALE, timeFormatOptions);
 
         return day.slice(0, -3);
     }

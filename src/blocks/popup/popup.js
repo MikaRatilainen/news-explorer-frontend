@@ -1,8 +1,9 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../base-component/base-component';
 import { popupTemplate } from './template';
+import { ESCAPE_KEY, IE_ESCAPE_KEY } from "../../js/constants/texts";
 
 export class Popup extends BaseComponent {
-    constructor({ container, handlers }) {
+    constructor({ container }) {
         super();
 
         this._popupElement = this._initPopup(container);
@@ -10,7 +11,10 @@ export class Popup extends BaseComponent {
         this._layoutElement = this._popupElement.querySelector('.popup__layout');
         this._closeBtnElement = this._popupElement.querySelector('.popup__close');
 
-        this._setHandlers([{ handlerFunction: this.close, name: 'close' }]);
+        this._setHandlers([
+            { handlerFunction: this._handleClosePopup, name: '_handleClosePopup' },
+            { handlerFunction: this._handleClickKey, name: '_handleClickKey' },
+        ]);
     }
 
     open() {
@@ -33,6 +37,16 @@ export class Popup extends BaseComponent {
         }
     }
 
+    _handleClosePopup() {
+        this.close();
+    }
+
+    _handleClickKey(event) {
+        if (event.key === IE_ESCAPE_KEY || event.key === ESCAPE_KEY) {
+            this.close();
+        }
+    }
+
     _initPopup(container) {
         container.insertAdjacentHTML('beforeend', popupTemplate);
         const element = container.querySelector('.popup');
@@ -42,12 +56,14 @@ export class Popup extends BaseComponent {
     }
 
     _setListeners() {
-        this._layoutElement.addEventListener('click', this.close);
-        this._closeBtnElement.addEventListener('click', this.close);
+        this._layoutElement.addEventListener('click', this._handleClosePopup);
+        this._closeBtnElement.addEventListener('click', this._handleClosePopup);
+        document.addEventListener('keydown', this._handleClickKey);
     }
 
     _removeListeners() {
         this._layoutElement.removeEventListener('click', this.close);
         this._closeBtnElement.removeEventListener('click', this.close);
+        document.removeEventListener('keydown', this._handleClickKey);
     }
 }

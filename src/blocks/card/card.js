@@ -1,7 +1,7 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../base-component/base-component';
 import { cardTemplate } from './template';
-import { cardStatuses } from '../../constants/configs';
-import { IMAGE_LOAD_ERROR, LOGIN_MESSAGE, DELETE_MASSAGE } from '../../constants/texts';
+import { cardStatuses } from '../../js/constants/configs';
+import { IMAGE_LOAD_ERROR, LOGIN_MESSAGE, DELETE_MASSAGE } from '../../js/constants/texts';
 
 export class NewsCard extends BaseComponent {
     constructor({ cardData, cardStatus, handlers }) {
