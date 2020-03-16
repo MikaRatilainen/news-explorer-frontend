@@ -39,7 +39,7 @@ export class Form extends BaseComponent {
     enableForm() {
         this._submitButton.disabled = false;
         this._inputElements.forEach(inputElement => {
-            inputElement.disabled = true;
+            inputElement.disabled = false;
         });
     }
 
