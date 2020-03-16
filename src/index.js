@@ -79,7 +79,7 @@ function handleSearch(formValues) {
     if (searchValue === '') {
         newsCardList.renderError(EMPTY_REQUEST);
     } else {
-        searchForm.disableSubmit();
+        searchForm.disableForm();
         newsCardList.clearList();
         newsCardList.renderLoader();
         const today = dateWorker.formatDateForNewsApi(dateWorker.getTodayDate());
@@ -96,7 +96,7 @@ function handleSearch(formValues) {
                     const cardElements = cards.map(card => card.element);
                     newsCardList.hideLoader();
                     newsCardList.renderResults(cardElements);
-                    searchForm.enableSubmit();
+                    searchForm.enableForm();
                 } else {
                     return Promise.reject(SERVER_ERROR);
                 }
@@ -160,13 +160,13 @@ function handleClickRegisterButton(event) {
 }
 
 function handleLogin(formValues, form) {
-    form.disableSubmit();
+    form.disableForm();
     mainApi.signin(formValues)
         .then(res => {
             form.removeListeners();
             popup.clearContent();
             popup.close();
-            form.enableSubmit();
+            form.enableForm();
 
             const { data } = res;
             tokenWorker.set(data);
@@ -215,14 +215,14 @@ function handleClickLoginButton(event) {
 }
 
 function handleRegister(formValues, form) {
-    form.disableSubmit();
+    form.disableForm();
     mainApi.signup(formValues)
         .then(() => {
             form.removeListeners();
             popup.clearContent();
             popup.close();
             openRegisteredPopup();
-            form.enableSubmit();
+            form.enableForm();
         })
         .catch(() => {
             form.setServerError();

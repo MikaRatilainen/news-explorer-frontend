@@ -29,12 +29,18 @@ export class Form extends BaseComponent {
         this._formElement.removeEventListener('submit', this._handleSubmitForm);
     }
 
-    disableSubmit() {
+    disableForm() {
         this._submitButton.disabled = true;
+        this._inputElements.forEach(inputElement => {
+            inputElement.disabled = true;
+        });
     }
 
-    enableSubmit() {
+    enableForm() {
         this._submitButton.disabled = false;
+        this._inputElements.forEach(inputElement => {
+            inputElement.disabled = true;
+        });
     }
 
     _handleSubmitForm(event) {

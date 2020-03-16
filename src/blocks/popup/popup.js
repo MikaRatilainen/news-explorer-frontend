@@ -62,8 +62,8 @@ export class Popup extends BaseComponent {
     }
 
     _removeListeners() {
-        this._layoutElement.removeEventListener('click', this.close);
-        this._closeBtnElement.removeEventListener('click', this.close);
+        this._layoutElement.removeEventListener('click', this._handleClosePopup);
+        this._closeBtnElement.removeEventListener('click', this._handleClosePopup);
         document.removeEventListener('keydown', this._handleClickKey);
     }
 }
