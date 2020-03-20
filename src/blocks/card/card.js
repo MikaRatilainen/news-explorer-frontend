@@ -1,7 +1,7 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../base-component/base-component';
 import { cardTemplate } from './template';
-import { cardStatuses } from '../../constants/configs';
-import { IMAGE_LOAD_ERROR, LOGIN_MESSAGE, DELETE_MASSAGE } from '../../constants/texts';
+import { cardStatuses } from '../../js/constants/configs';
+import { IMAGE_LOAD_ERROR, LOGIN_MESSAGE, DELETE_MASSAGE } from '../../js/constants/texts';
 
 export class NewsCard extends BaseComponent {
     constructor({ cardData, cardStatus, handlers }) {
@@ -10,6 +10,7 @@ export class NewsCard extends BaseComponent {
         this._cardData = cardData;
         this._cardStatus = cardStatus;
         this._handlers = handlers;
+        this._isUpdating = false;
 
         this.element = this._initCardElement();
         this._markButton = this.element.querySelector('.card__control');
@@ -48,6 +49,10 @@ export class NewsCard extends BaseComponent {
     changeCardStatus(status) {
         this._cardStatus = status;
         this._setMarkMessage();
+    }
+
+    setCardIsUpdating(isUpdating) {
+        this._isUpdating = isUpdating;
     }
 
     _initCardElement() {
@@ -125,6 +130,9 @@ export class NewsCard extends BaseComponent {
     _handleClickMarkButton() {
         const { handleSaveCard, handleDeleteCard } = this._handlers;
         const currentStatus = cardStatuses[this._cardStatus];
+        if (this._isUpdating) {
+            return () => {};
+        }
         if (currentStatus === cardStatuses.inactive) {
             handleSaveCard(this);
         } else if (currentStatus === cardStatuses.active || currentStatus === cardStatuses.savedMode) {

@@ -1,5 +1,5 @@
-import { headerThemes } from '../../constants/themes';
-import { AUTH_BUTTON_TEXT } from '../../constants/texts';
+import { headerThemes } from '../../js/constants/themes';
+import { AUTH_BUTTON_TEXT } from '../../js/constants/texts';
 
 export class Header {
     constructor({ headerElement, handlers, theme, isLoggedIn, userName }) {
@@ -29,7 +29,7 @@ export class Header {
         }
     }
 
-    _setHandlers({ clickAuthButton }) {
-        this._authButtonElement.addEventListener('click', clickAuthButton);
+    _setHandlers({ handleClickAuthButton }) {
+        this._authButtonElement.addEventListener('click', handleClickAuthButton);
     }
 }

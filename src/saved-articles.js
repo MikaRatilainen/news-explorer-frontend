@@ -1,8 +1,8 @@
 import { MainApi } from './js/api/MainApi';
-import { Header } from './js/components/Header';
-import { NewsCardList } from './js/components/NewsCardList';
-import { NewsCard } from './js/components/NewsCard';
-import { ArticlesCounter } from './js/components/ArticlesCounter';
+import { Header } from './blocks/header/header';
+import { NewsCardList } from './blocks/card-list/card-list';
+import { NewsCard } from './blocks/card/card';
+import { ArticlesCounter } from './blocks/saved-articles/saved-articles';
 import { TokenWorker } from './js/utils/TokenWorker';
 import { headerThemes } from './js/constants/themes';
 import { cardStatuses } from './js/constants/configs';
@@ -21,7 +21,7 @@ const newsCardList = new NewsCardList({ listContainerElement: resultsElement, ca
 
 // HEADER LOGIC
 const headerHandlers = {
-    clickAuthButton: handleClickAuth,
+    handleClickAuthButton: handleClickAuth,
 };
 const headerParams = {
     headerElement,
@@ -77,6 +77,7 @@ mainApi.getArticles(token)
     });
 
 function handleDeleteCard(card) {
+    card.setCardIsUpdating(true);
     const token = tokenWorker.get();
     const cardData = card.getCardData();
     mainApi.removeArticle(cardData._id, token)

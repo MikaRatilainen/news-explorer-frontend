@@ -1,6 +1,6 @@
-import { BaseComponent } from '../BaseComponent';
-import { RENDER_CARDS_STEP } from '../../constants/numbers';
-import { EMPTY_RESPONCE } from '../../constants/texts';
+import { BaseComponent } from '../base-component/base-component';
+import { RENDER_CARDS_STEP } from '../../js/constants/numbers';
+import { EMPTY_RESPONSE } from '../../js/constants/texts';
 
 export class NewsCardList extends BaseComponent {
     constructor({ listContainerElement, cards, showAll }) {
@@ -18,7 +18,7 @@ export class NewsCardList extends BaseComponent {
         this._showingCardsCount = 0;
 
         this._cards.forEach(card => this._addCard(card));
-        this._setHandlers([{ handlerFunction: this._showMore, name: '_showMore' }]);
+        this._setHandlers([{ handlerFunction: this._handleShowMore, name: '_handleShowMore' }]);
         this._setListeners();
     }
 
@@ -28,10 +28,10 @@ export class NewsCardList extends BaseComponent {
 
         if (cards.length > 0) {
             this._showFoundField();
-            this._showMore();
+            this._handleShowMore();
             this._showShowMoreButton();
         } else {
-            this.renderError(EMPTY_RESPONCE);
+            this.renderError(EMPTY_RESPONSE);
         }
     }
 
@@ -87,7 +87,7 @@ export class NewsCardList extends BaseComponent {
         }
     }
 
-    _showMore() {
+    _handleShowMore() {
         const currentCountWithStep = this._showingCardsCount + RENDER_CARDS_STEP;
         const nextCardsCount = this._showAll ? this._cards.length : Math.min(currentCountWithStep, this._cards.length);
         const printingCards = this._cards.slice(this._showingCardsCount, nextCardsCount);
@@ -117,13 +117,13 @@ export class NewsCardList extends BaseComponent {
 
     _setListeners() {
         if (this._showMoreBtnElement) {
-            this._showMoreBtnElement.addEventListener('click', this._showMore);
+            this._showMoreBtnElement.addEventListener('click', this._handleShowMore);
         }
     }
 
     _removeListeners() {
         if (this._showMoreBtnElement) {
-            this._showMoreBtnElement.addEventListener('click', this._showMore);
+            this._showMoreBtnElement.addEventListener('click', this._handleShowMore);
         }
     }
 }

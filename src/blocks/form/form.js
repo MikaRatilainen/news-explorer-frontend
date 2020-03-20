@@ -1,4 +1,4 @@
-import { BaseComponent } from '../BaseComponent';
+import { BaseComponent } from '../base-component/base-component';
 
 export class Form extends BaseComponent {
     constructor({ formElement, handleSubmit }) {
@@ -12,8 +12,8 @@ export class Form extends BaseComponent {
         this._handleSubmit = handleSubmit;
 
         super._setHandlers([
-            { handlerFunction: this._validateForm, name: '_validateForm' },
-            { handlerFunction: this._submitForm, name: '_submitForm' },
+            { handlerFunction: this._handleValidateForm, name: '_handleValidateForm' },
+            { handlerFunction: this._handleSubmitForm, name: '_handleSubmitForm' },
         ]);
         this._setListeners();
     }
@@ -24,27 +24,33 @@ export class Form extends BaseComponent {
 
     removeListeners() {
         this._inputElements.forEach(input => {
-            input.removeEventListener('input', this._validateForm);
+            input.removeEventListener('input', this._handleValidateForm);
         });
-        this._formElement.removeEventListener('submit', this._submitForm);
+        this._formElement.removeEventListener('submit', this._handleSubmitForm);
     }
 
-    disableSubmit() {
+    disableForm() {
         this._submitButton.disabled = true;
+        this._inputElements.forEach(inputElement => {
+            inputElement.disabled = true;
+        });
     }
 
-    enableSubmit() {
+    enableForm() {
         this._submitButton.disabled = false;
+        this._inputElements.forEach(inputElement => {
+            inputElement.disabled = false;
+        });
     }
 
-    _submitForm(event) {
+    _handleSubmitForm(event) {
         event.preventDefault();
         const formValues = this._getInfo();
 
         this._handleSubmit(formValues, this);
     }
 
-    _validateForm() {
+    _handleValidateForm() {
         const isValid = this._inputElements.every(inputElem => inputElem.validity.valid);
 
         this._submitButton.disabled = !isValid;
@@ -58,8 +64,8 @@ export class Form extends BaseComponent {
 
     _setListeners() {
         this._inputElements.forEach(input => {
-            input.addEventListener('input', this._validateForm);
+            input.addEventListener('input', this._handleValidateForm);
         });
-        this._formElement.addEventListener('submit', this._submitForm);
+        this._formElement.addEventListener('submit', this._handleSubmitForm);
     }
 }

@@ -1,10 +1,10 @@
 import { MainApi } from './js/api/MainApi';
 import { NewsApi } from './js/api/NewsApi';
-import { Header } from './js/components/Header';
-import { Popup } from './js/components/Popup';
-import { NewsCardList } from './js/components/NewsCardList';
-import { NewsCard } from './js/components/NewsCard';
-import { Form } from './js/components/Form';
+import { Header } from './blocks/header/header';
+import { Popup } from './blocks/popup/popup';
+import { NewsCardList } from './blocks/card-list/card-list';
+import { NewsCard } from './blocks/card/card';
+import { Form } from './blocks/form/form';
 import { TokenWorker } from './js/utils/TokenWorker';
 import { DateWorker } from './js/utils/DateWorker';
 import { CardDataWorker } from './js/utils/CardDataWorker';
@@ -23,13 +23,13 @@ const dateWorker = new DateWorker();
 const cardDataWorker = new CardDataWorker();
 const mainApi = new MainApi({ baseUrl: BASE_URL });
 const newsApi = new NewsApi({ baseUrl: NEWS_API_BASE_URL, apiKey: NEWS_API_KEY });
-const popup = new Popup({ container: root, handlers: {} });
+const popup = new Popup({ container: root });
 const newsCardList = new NewsCardList({ listContainerElement: resultsElement, cards: [] });
 
 
 // HEADER LOGIC
 const headerHandlers = {
-    clickAuthButton: handleClickAuth,
+    handleClickAuthButton: handleClickAuth,
 };
 const headerParams = {
     headerElement,
@@ -79,7 +79,7 @@ function handleSearch(formValues) {
     if (searchValue === '') {
         newsCardList.renderError(EMPTY_REQUEST);
     } else {
-        searchForm.disableSubmit();
+        searchForm.disableForm();
         newsCardList.clearList();
         newsCardList.renderLoader();
         const today = dateWorker.formatDateForNewsApi(dateWorker.getTodayDate());
@@ -92,11 +92,11 @@ function handleSearch(formValues) {
                     const mappedCardData = cardDataWorker.mapCardData(res.articles, searchValue);
                     const cardStatus = token ? cardStatuses.inactive : cardStatuses.disabled;
                     const handlers = cardHandlers;
-                    cards = mappedCardData.map(cardData =>  new NewsCard({ cardData, cardStatus, handlers }));
+                    cards = mappedCardData.map(cardData => new NewsCard({ cardData, cardStatus, handlers }));
                     const cardElements = cards.map(card => card.element);
                     newsCardList.hideLoader();
                     newsCardList.renderResults(cardElements);
-                    searchForm.enableSubmit();
+                    searchForm.enableForm();
                 } else {
                     return Promise.reject(SERVER_ERROR);
                 }
@@ -109,11 +109,13 @@ function handleSearch(formValues) {
 }
 
 function handleSaveCard(card) {
+    card.setCardIsUpdating(true);
     const token = tokenWorker.get();
-    const cardData = card.getCardData();
+    const { _id, ...cardData} = card.getCardData();
     mainApi.createArticle(cardData, token)
         .then(res => {
             card.setCardActive(res.data._id);
+            card.setCardIsUpdating(false);
         })
         .catch(err => {
             console.log(err);
@@ -121,11 +123,13 @@ function handleSaveCard(card) {
 }
 
 function handleDeleteCard(card) {
+    card.setCardIsUpdating(true);
     const token = tokenWorker.get();
     const cardData = card.getCardData();
     mainApi.removeArticle(cardData._id, token)
         .then(() => {
             card.setCardInactive();
+            card.setCardIsUpdating(false);
         })
         .catch(err => {
             console.log(err);
@@ -135,7 +139,7 @@ function handleDeleteCard(card) {
 
 // LOGIN POPUP LOGIC
 function openLoginPopup() {
-    const loginPopupContent = getElementByTemplateId('login-popup');
+    const loginPopupContent = getElementByTemplateClass('login-popup');
     const loginFormElement = loginPopupContent.querySelector('.login-form');
     const registerButton = loginPopupContent.querySelector('.page__text-button');
 
@@ -156,13 +160,13 @@ function handleClickRegisterButton(event) {
 }
 
 function handleLogin(formValues, form) {
-    form.disableSubmit();
+    form.disableForm();
     mainApi.signin(formValues)
         .then(res => {
             form.removeListeners();
             popup.clearContent();
             popup.close();
-            form.enableSubmit();
+            form.enableForm();
 
             const { data } = res;
             tokenWorker.set(data);
@@ -190,7 +194,7 @@ function handleLogin(formValues, form) {
 
 // REGISTER POPUP LOGIC
 function openRegisterPopup() {
-    const registerPopupContent = getElementByTemplateId('register-popup');
+    const registerPopupContent = getElementByTemplateClass('register-popup');
     const registerFormElement = registerPopupContent.querySelector('.register-form');
     const loginButton = registerPopupContent.querySelector('.page__text-button');
 
@@ -211,14 +215,14 @@ function handleClickLoginButton(event) {
 }
 
 function handleRegister(formValues, form) {
-    form.disableSubmit();
+    form.disableForm();
     mainApi.signup(formValues)
         .then(() => {
             form.removeListeners();
             popup.clearContent();
             popup.close();
             openRegisteredPopup();
-            form.enableSubmit();
+            form.enableForm();
         })
         .catch(() => {
             form.setServerError();
@@ -228,7 +232,7 @@ function handleRegister(formValues, form) {
 
 // REGISTERED POPUP LOGIC
 function openRegisteredPopup() {
-    const registeredPopupContent = getElementByTemplateId('register-success-popup');
+    const registeredPopupContent = getElementByTemplateClass('register-success-popup');
     const loginButton = registeredPopupContent.querySelector('.page__text-button');
 
     popup.setContent(registeredPopupContent);
@@ -239,7 +243,7 @@ function openRegisteredPopup() {
 
 
 // UTILS
-function getElementByTemplateId(id) {
-    const template = document.getElementById(id);
+function getElementByTemplateClass(templateClass) {
+    const template = document.querySelector(`.${templateClass}`);
     return template.content.cloneNode(true);
 }
